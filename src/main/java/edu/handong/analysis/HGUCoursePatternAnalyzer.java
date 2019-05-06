@@ -6,7 +6,7 @@ import edu.handong.analysis.datamodel.Student;
 public class HGUCoursePatternAnalyzer 
 {
 	
-	String[] lines = {	"1999-1, JC Nam, Java Programming",
+	private String[] lines = {	"1999-1, JC Nam, Java Programming",
 						"1999-2, JC Nam, Programming Language Theory",
 						"1999-1, JC Nam, Data Structures",
 						"2001-1, JC Nam, Database Systems",
@@ -38,15 +38,17 @@ public class HGUCoursePatternAnalyzer
 		students = initiateStudentArrayFromLines(lines);
 		
 		System.out.println("Number of All Students: " + numOfStudents);
-		for(Student student: students) {
+		/*for(Student student: students) 
+		{
 			System.out.println(student.getName());
-		}
+		}*/
 		
 		courses = initiateCourseArrayFromLines(lines);
 		System.out.println("Number of All Courses: " + numOfCourses);
-		for(Course course: courses) {
+		/*for(Course course: courses) 
+		{
 			System.out.println(course.getCourseName());
-		}
+		}*/
 		
 	}
 
