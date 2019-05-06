@@ -32,6 +32,7 @@ public class HGUCoursePatternAnalyzer
 	 */
 	public void run(String[] args) 
 	{
+		int studentck=0 , courseck=0;
 		
 		numOfStudents = Integer.parseInt(args[0]);
 		numOfCourses = Integer.parseInt(args[1]);
@@ -39,18 +40,40 @@ public class HGUCoursePatternAnalyzer
 		students = initiateStudentArrayFromLines(lines);
 		
 		System.out.println("Number of All Students: " + numOfStudents);
-		/*for(Student student: students) 
+		
+		for(Student student: students) 
 		{
-			System.out.println(student.getName());
-		}*/
-		/*
+			if (studentExist(students,student) == true)
+			{
+				if (studentck < numOfStudents)
+				{
+					System.out.println(student.getName());
+					studentck++;
+				}
+			}
+			
+			if (studentExist(students,student) == false)
+				break;
+		}
+		
 		courses = initiateCourseArrayFromLines(lines);
+		
 		System.out.println("Number of All Courses: " + numOfCourses);
+		
 		for(Course course: courses) 
 		{
-			System.out.println(course.getCourseName());
-		}*/
-		
+			if (courseExist(courses,course) == true)
+			{
+				if (courseck < numOfCourses)
+				{
+					System.out.println(course.getCourseName());
+					courseck++;	
+				}
+			}
+			
+			if (courseExist(courses,course) == false)
+				break;
+		}
 	}
 
 	/**
@@ -60,16 +83,37 @@ public class HGUCoursePatternAnalyzer
 	 */
 	private Student[] initiateStudentArrayFromLines(String[] lines) 
 	{
+		int ct=0, j=0;
 		Student[] st = new Student[lines.length];
-		System.out.println("st = " + st[i]);
+		String[] arr = new String[lines.length];
 		
+		for (String temp : lines)
+		{
+			String imsi = temp.split(",")[1];
+			imsi= imsi.trim();
+
+			if (i==0)
+				arr[ct]=imsi;
+			
+			if (i!=0)
+			{
+				if (imsi.equals(arr[ct]))
+				{
+					i++;
+					continue;
+				}
+				
+			if (!(imsi.contentEquals(arr[ct])))
+				 arr[++ct]=imsi;
+			}
+			i++;
+		}		
 		
-		
-		
-		// TODO: implement this method
-		
-		
-		return null;
+		for (String retemp : arr)
+		{
+			st[j++] = new Student(retemp);		
+		}
+		return st;
 	}
 
 	/**
@@ -80,10 +124,10 @@ public class HGUCoursePatternAnalyzer
 	 */
 	private boolean studentExist(Student[] students, Student student) 
 	{
-		
-		// TODO: implement this method
-
-		return false;
+		if (students == null && student == null)
+			return false;
+		else
+			return true;
 	}
 	
 	/**
@@ -93,10 +137,33 @@ public class HGUCoursePatternAnalyzer
 	 */
 	private Course[] initiateCourseArrayFromLines(String[] lines)
 	{
+		int cct=0, w=0, p=0, chec=0;
+		Course[] cs = new Course[lines.length];
+		String[] copy = new String[lines.length];
 		
-		// TODO: implement this method
+		for (String temp2 : lines)
+		{
+			String imsi = temp2.split(",")[2];
+			imsi= imsi.trim();
+
+			for (p=0 ; p<12; p++)
+			{
+				if (imsi.equals(copy[p]))
+					chec++;
+			}
+
+			if (chec==0)	
+			 copy[cct++]=imsi;
+			
+			chec =0;			
+		}
 		
-		return null;
+		for (String reimsi : copy)
+		{
+			cs[w++] = new Course(reimsi);	
+		}
+		
+		return cs;
 	}
 
 	/**
@@ -107,10 +174,10 @@ public class HGUCoursePatternAnalyzer
 	 */
 	private boolean courseExist(Course[] courses, Course course)
 	{
-		
-		// TODO: implement this method
-
-		return false;
+		if (courses == null && course == null)
+			return false;
+		else
+			return true;
 	}
 
 }
