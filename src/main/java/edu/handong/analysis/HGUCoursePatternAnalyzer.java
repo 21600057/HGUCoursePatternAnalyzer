@@ -25,10 +25,10 @@ public class HGUCoursePatternAnalyzer
 
 	private int numOfStudents;
 	private int numOfCourses;
-//	private Student[] students;
-//	private Course[] courses;
-	private ArrayList<Student> students;
-	private ArrayList<Course> courses;
+	private Student[] students;
+	private Course[] courses;
+	//private ArrayList<Student> students;
+	//private ArrayList<Course> courses;
 	/**
 	 * This method runs our analysis logic to get the list of student and course names from lines.
 	 * @param args
@@ -86,7 +86,6 @@ public class HGUCoursePatternAnalyzer
 	 */
 	private Student[] initiateStudentArrayFromLines(String[] lines) 
 	{
-		ArrayList<Student> students = new ArrayList<Student>();
 		
 		int ct=0, j=0;
 		Student[] st = new Student[lines.length];
@@ -95,8 +94,7 @@ public class HGUCoursePatternAnalyzer
 		
 		
 		for (String temp : lines)
-			students.add(temp.split(",")[1]);
-		/*{
+		{
 			String imsi = temp.split(",")[1];
 			imsi= imsi.trim();
 
@@ -120,7 +118,7 @@ public class HGUCoursePatternAnalyzer
 		for (String retemp : arr)
 		{
 			st[j++] = new Student(retemp);		
-		}*/
+		}
 		return st;
 	}
 
