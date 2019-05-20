@@ -178,7 +178,7 @@ public class HGUCoursePatternAnalyzer
 		}
 		
 		ArrayList<Course> www = new ArrayList<Course>();
-		for (String ee : cs)
+		for (String ee : cs) 
 		{
 			www.add(new Course(ee));
 		}
