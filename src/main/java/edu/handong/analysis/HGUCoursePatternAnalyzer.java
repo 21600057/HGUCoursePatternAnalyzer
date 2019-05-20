@@ -25,10 +25,10 @@ public class HGUCoursePatternAnalyzer
 
 	private int numOfStudents;
 	private int numOfCourses;
-	private Student[] students;
-	private Course[] courses;
-	//private ArrayList<Student> students;
-	//private ArrayList<Course> courses;
+	//private Student[] students;
+	//private Course[] courses;
+	private ArrayList<Student> students;
+	private ArrayList<Course> courses;
 	/**
 	 * This method runs our analysis logic to get the list of student and course names from lines.
 	 * @param args
@@ -84,17 +84,18 @@ public class HGUCoursePatternAnalyzer
 	 * @param lines
 	 * @return
 	 */
-	private Student[] initiateStudentArrayFromLines(String[] lines) 
+	private ArrayList<Student> initiateStudentArrayFromLines(String[] lines)
 	{
 		
 		int ct=0, j=0;
-		Student[] st = new Student[lines.length];
+		String[] st = new String[lines.length];
 		String[] arr = new String[lines.length];
 		
-		
-		
-		for (String temp : lines)
+		String temp;
+					
+		for (i=0; i < lines.length ; i++)
 		{
+			temp = lines[i];
 			String imsi = temp.split(",")[1];
 			imsi= imsi.trim();
 
@@ -113,13 +114,20 @@ public class HGUCoursePatternAnalyzer
 				 arr[++ct]=imsi;
 			}
 			i++;
-		}		
-		
+		}
+				
 		for (String retemp : arr)
 		{
-			st[j++] = new Student(retemp);		
+			st[j++] = retemp;		
 		}
-		return st;
+		
+		ArrayList<Student> stud = new ArrayList<Student>();
+		for (String x : st)
+		{
+			stud.add(new Student(x));
+		}
+		
+		return stud;
 	}
 
 	/**
@@ -128,7 +136,7 @@ public class HGUCoursePatternAnalyzer
 	 * @param student
 	 * @return boolean
 	 */
-	private boolean studentExist(Student[] students, Student student) 
+	private boolean studentExist(ArrayList<Student> students, Student student) 
 	{
 		if (students == null && student == null)
 			return false;
@@ -141,10 +149,10 @@ public class HGUCoursePatternAnalyzer
 	 * @param lines
 	 * @return
 	 */
-	private Course[] initiateCourseArrayFromLines(String[] lines)
+	private ArrayList<Course> initiateCourseArrayFromLines(String[] lines)
 	{
 		int cct=0, w=0, p=0, chec=0;
-		Course[] cs = new Course[lines.length];
+		String[] cs = new String[lines.length];
 		String[] copy = new String[lines.length];
 		
 		for (String temp2 : lines)
@@ -166,10 +174,17 @@ public class HGUCoursePatternAnalyzer
 		
 		for (String reimsi : copy)
 		{
-			cs[w++] = new Course(reimsi);	
+			cs[w++] = reimsi;	
 		}
 		
-		return cs;
+		ArrayList<Course> www = new ArrayList<Course>();
+		for (String ee : cs)
+		{
+			www.add(new Course(ee));
+		}
+
+		
+		return www;
 	}
 
 	/**
@@ -178,7 +193,7 @@ public class HGUCoursePatternAnalyzer
 	 * @param course
 	 * @return boolean
 	 */
-	private boolean courseExist(Course[] courses, Course course)
+	private boolean courseExist(ArrayList<Course> courses, Course course)
 	{
 		if (courses == null && course == null)
 			return false;
